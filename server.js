@@ -9,21 +9,15 @@ const dns        = require("dns");
 
 const app = express();
 
-mongoose.connect("mongodb://fred:fred1234@ds227481.mlab.com:27481/fcc-url-shortener");
+mongoose.connect(process.env.MLAB_URI);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/public', express.static(process.cwd() + '/public'));
 
-app.get('/', (req, res) => {
-  res.sendFile(process.cwd() + '/views/index.html');
-});
+app.get('/', (req, res) => res.sendFile(process.cwd() + '/views/index.html'));
 
-app.get("/api/hello", (req, res) => {
-  res.json({
-    greeting: 'hello API'
-  });
-});
+app.get("/api/hello", (req, res) => res.json({greeting: 'hello API'}));
 
 const urlSchema = new mongoose.Schema({
   original_url: String,
@@ -34,15 +28,14 @@ const Url = mongoose.model("Url", urlSchema);
 
 app.post("/api/shorturl/new", (req, res) => {
   const original_url = req.body.url;
-  const dnsUrl = original_url.match(/www.*/)[0];
+  const dnsUrl = original_url.replace(/^https?:\/\//, "");
+  
   const randomNumber = Math.floor(Math.random() * 1000);
   
   dns.lookup(dnsUrl, (err, data) => {
     if (err) {
       console.log(err);
-      res.json({
-        "error": "invalid URL"
-      });
+      res.json({"error": "invalid URL"});
     }
     else {
       Url.findOne({"original_url": original_url}, (err, data) => {
@@ -77,9 +70,7 @@ app.get("/api/shorturl/:short_url", (req, res) => {
     if (err) console.log(err);
     else {
       if (data === null) {
-        res.json({
-          "error": short_url + " not found"
-        });
+        res.json({"error": short_url + " not found"});
       } else {
         res.redirect(data.original_url);
       }
@@ -87,6 +78,4 @@ app.get("/api/shorturl/:short_url", (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Node.js listening ...');
-});
+app.listen(process.env.PORT || 3000, () => console.log('Node.js listening ...'));

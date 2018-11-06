@@ -10,28 +10,34 @@ body {
 .container {
 	padding: 0;
 	margin-top: 40px;
+  margin: auto;
+  max-width: 800px;
 }
 
 h3 {
   margin-top: 30px;
 }
 
-.footer {
-	margin-top: 40px;
-}
-
 .user-stories {
   position: relative;
-  text-align: justify;
+  text-align: left;
   max-width: 700px;
   margin: 15px auto;
+}
+
+.user-stories li {
+  margin-bottom: 1em;
 }
 
 code {
   font-family: monospace;
   padding: 2px;
   color: black;
-  background-color: #fff;
+  background-color: rgba(0,0,0,0.1);
+}
+
+a {
+	color: #2574A9;
 }
 
 ol {
@@ -44,14 +50,6 @@ ul {
 
 li {
   margin-bottom: 0.5em;
-}
-
-.user-stories li {
-  margin-bottom: 1em;
-}
-
-a {
-	color: #2574A9;
 }
 
 form {
