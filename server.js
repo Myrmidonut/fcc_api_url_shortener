@@ -13,11 +13,15 @@ mongoose.connect(process.env.MLAB_URI);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/public', express.static(process.cwd() + '/public'));
+app.use(express.static("public"));
 
-app.get('/', (req, res) => res.sendFile(process.cwd() + '/views/index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(process.cwd() + '/views/index.html')
+});
 
-app.get("/api/hello", (req, res) => res.json({greeting: 'hello API'}));
+app.get("/api/hello", (req, res) => {
+  res.json({greeting: 'hello API'})
+});
 
 const urlSchema = new mongoose.Schema({
   original_url: String,
@@ -29,7 +33,6 @@ const Url = mongoose.model("Url", urlSchema);
 app.post("/api/shorturl/new", (req, res) => {
   const original_url = req.body.url;
   const dnsUrl = original_url.replace(/^https?:\/\//, "");
-  
   const randomNumber = Math.floor(Math.random() * 1000);
   
   dns.lookup(dnsUrl, (err, data) => {

@@ -3,49 +3,54 @@
   <head>
     <title>URL Shortener</title>
     
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-    <link href="public/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
   </head>
 
   <body>
-    <div class="container">
-      <h2>API Project: URL Shortener Microservice</h2>
+    
+    <header class="container">
+      <h1>API Project: URL Shortener Microservice</h1>
+    </header>
+    
+    <main class="container">
       
-      <h3>User Stories:</h3>
+      <h2>User Stories:</h2>
       <ol class="user-stories">
-        <li>I can POST a URL to <code>[base url]/api/shorturl/new</code> and I will receive a shortened URL in the JSON response.<br>Example : <code>{"original_url":"www.google.com","short_url":1}</code></li>
-        <li>If I pass an invalid URL that doesn't follow the <code>http(s)://www.example.com(/more/routes)</code> format, the JSON response will contain an error like <code>{"error":"invalid URL"}</code><br>
-        HINT: to be sure that the submitted url points to a valid site you can use the function <code>dns.lookup(host, cb)</code> from the <code>dns</code> core module.</li>
-        <li>When I visit the shortened URL, it will redirect me to my original link.</li>
+        <li>I can <strong>POST</strong> a URL to <code>/api/shorturl/new</code> and I will receive a shortened URL in the JSON response.<br>Example : <code>{"original_url":"www.google.com","short_url":1}</code></li>
+        <li>If I pass an invalid URL that doesn't follow the<br><code>(https://)(www.)example.com(/more/routes)</code> format, the JSON response will contain an error like <code>{"error":"invalid URL"}</code><br>
+        HINT: to be sure that the submitted URL points to a valid site you can use the function <code>dns.lookup(host, cb)</code> from the <code>dns</code> core module.</li>
+        <li>When I visit the shortened URL, it will <code>redirect</code> me to my original link.</li>
       </ol>
       
-      <h3>Short URL Creation:</h3>
+      <hr>
+      
+      <h2>API:</h2>
+      <h3>Create Short URL:</h3>
       <p>
-        Example: <code>POST [base url]/api/shorturl/new</code> - <code>https://www.google.com</code>
+        Example: <code>POST /api/shorturl/new</code> - <code>https://www.google.com</code>
       </p>
       <form action="api/shorturl/new" method="POST">
-        <label for="url_input">URL to be shortened</label>
+        <label for="url_input">URL to be shortened:</label>
         <input id="url_input" type="text" name="url" value="https://www.freecodecamp.com">
-        <input type="submit" value="POST URL">
+        <input type="submit" value="Submit">
       </form>
+      <h3>Open Short URL:</h3>
+      <a href="https://fcc-api-url-shortener-fred.glitch.me/api/shorturl/776" target="_blank">/api/shorturl/776</a>
+      <p><strong>Redirects to:</strong> https://www.freecodecamp.com</p>
       
-      <h3>Example Usage:</h3>
-      <a href="https://fcc-api-url-shortener-fred.glitch.me/api/shorturl/776">
-        [base url]/api/shorturl/776
-      </a>
-
-      <h3>Will Redirect to:</h3>
-      <p>https://www.freecodecamp.com</p>
+    </main>
     
+    <footer class="container">
       <hr>
-    
-      <div class="footer">
-        <p>
-          by <a href="https://github.com/Myrmidonut/fcc_api_url_shortener" title="GitHub Repository" target="_blank">Frederik</a> | <a href="https://learn.freecodecamp.org/" title="Learn to code at freeCodeCamp" target="_blank">freeCodeCamp</a>
-        </p>
-      </div>
+      <p>
+        by <a href="https://github.com/Myrmidonut/fcc_api_url_shortener" title="GitHub Repository" target="_blank">Frederik</a> | <a href="https://learn.freecodecamp.org/" title="Learn to code at freeCodeCamp" target="_blank">freeCodeCamp</a>
+      </p>
+    </footer>
       
-    </div>
   </body>
 </html>
