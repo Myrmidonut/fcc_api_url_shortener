@@ -57,4 +57,16 @@ input {
 input[type=text] {
   width: 220px;
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+input[type=submit] {
+  width: 70px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+h1 {
+  line-height: initial;
 }
