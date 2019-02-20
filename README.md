@@ -1,21 +1,39 @@
-# API Project: URL Shortener Microservice for freeCodeCamp
+# URL Shortener
 
+## Introduction
+A URL gets converted to a shortened URL and saved to a database. Navigating to a shortend URL will redirect to the original URL.
 
-### User Stories
+This project is part of freeCodeCamps API And Microservices certificate.
 
-1. I can POST a URL to `/api/shorturl/new` and I will receive a shortened URL in the JSON response. Example : `{"original_url":"www.google.com","short_url":1}`
-2. If I pass an invalid URL that doesn't follow the valid `(https://)(www.)example.com(/more/routes)` format, the JSON response will contain an error like `{"error":"invalid URL"}`. *HINT*: to be sure that the submitted url points to a valid site you can use the function `dns.lookup(host, cb)` from the `dns` core module.
-3. When I visit the shortened URL, it will redirect me to my original link.
+***
 
+## Project Requirements
+* It is possible to POST a URL to `/api/shorturl/new` and a shortened URL in the JSON response gets returned. Example: `{"original_url":"www.google.com","short_url":1}`
+* Passing an invalid URL that doesn't follow the valid `(https://)(www.)example.com(/more/routes)` format returns the JSON response containing an error like `{"error":"invalid URL"}`. *HINT*: to be sure that the submitted url points to a valid site, use the function `dns.lookup(host, cb)` from the `dns` core module.
+* Visiting the shortened URL will redirect to the original link.
 
-#### Creation Example:
+***
 
-POST /api/shorturl/new - https://www.google.com
+## Final Project
+https://fcc-api-url-shortener-fred.glitch.me
 
-#### Usage:
+***
 
-/api/shorturl/776
+## Behind the scenes
+### Backend:
+* Node
+* Express
+* Mongoose
 
-#### Will redirect to:
+### Database:
+* MongoDB
 
-https://www.freecodecamp.com
+### Hosting:
+* Glitch
+* mLab
+
+***
+
+## Preview Images
+### Main Screen:
+![URL Shortener](readme_images/url-shortener.png)
